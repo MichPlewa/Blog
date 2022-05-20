@@ -1,3 +1,3 @@
-const initialState = {};
+const initialState = { posts: [] };
 
 export default initialState;
