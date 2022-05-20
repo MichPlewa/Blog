@@ -1,6 +1,6 @@
-import { Container, } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
-import Home from './components/posts/Home';
+import Home from './components/features/Home/Home';
 import Post from './components/posts/Post';
 import AddPost from './components/posts/AddPost';
 import EditPost from './components/posts/EditPost';
