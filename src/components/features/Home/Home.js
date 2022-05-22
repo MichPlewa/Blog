@@ -2,11 +2,10 @@ import { Col, Row, Stack } from 'react-bootstrap';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectAllPages } from '../../../redux/postsRedux';
+import { selectAllPost } from '../../../redux/postsRedux';
 
 const Home = () => {
-  const pages = useSelector((state) => selectAllPages(state));
-
+  const posts = useSelector((state) => selectAllPost(state));
   return (
     <div>
       <Row>
@@ -22,21 +21,21 @@ const Home = () => {
         </Col>
       </Row>
       <Row xs={1} sm={2} md={3}>
-        {pages.map((page) => (
-          <Col key={page.id}>
-            <Card style={{ margin: 'auto', width: '100%' }}>
+        {posts.map((post) => (
+          <Col key={post.id}>
+            <Card style={{ margin: '3% 5% 1% 0', width: '100%' }}>
               <Card.Body>
-                <Card.Title>{page.title}</Card.Title>
+                <Card.Title>{post.title}</Card.Title>
                 <Card.Text>
                   <b>Author: </b>
-                  {page.author}
+                  {post.author}
                 </Card.Text>
                 <Card.Text>
                   <b>Published: </b>
-                  {page.publishedDate}
+                  {post.publishedDate}
                 </Card.Text>
-                <Card.Text>{page.shortDescription}</Card.Text>
-                <Link to={'/post/' + page.id}>
+                <Card.Text>{post.shortDescription}</Card.Text>
+                <Link to={'/post/' + post.id}>
                   <Button>Read More</Button>
                 </Link>
               </Card.Body>

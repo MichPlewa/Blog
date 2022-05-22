@@ -1,8 +1,8 @@
 import { Container } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/features/Home/Home';
-import Post from './components/posts/Post';
-import AddPost from './components/posts/AddPost';
+import Post from './components/features/Post/Post';
+import AddPost from './components/view/AddPost';
 import EditPost from './components/posts/EditPost';
 import About from './components/posts/About';
 import NotFound from './components/posts/NotFound';
