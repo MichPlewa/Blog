@@ -2,7 +2,7 @@ import { Col, Row, Stack } from 'react-bootstrap';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectAllPost } from '../../../redux/postsRedux';
+import { selectAllPost } from '../../../Redux/postsRedux';
 
 const Home = () => {
   const posts = useSelector((state) => selectAllPost(state));

@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import TextArea from '../../common/TextArea/TextArea';
 import TextInput from '../../common/TextInput/TextInput';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPost, editPost, selectPostById } from '../../../redux/postsRedux';
+import { addPost, editPost, selectPostById } from '../../../Redux/postsRedux';
 import { useNavigate } from 'react-router-dom';
 
 const PostForm = (props) => {

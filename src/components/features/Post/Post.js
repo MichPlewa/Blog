@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectPostById, removePost } from '../../../redux/postsRedux';
+import { selectPostById, removePost } from '../../../Redux/postsRedux';
 import { Card, Row, Button, Modal, Stack } from 'react-bootstrap';
 import { useState } from 'react';
 
