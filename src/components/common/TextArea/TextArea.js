@@ -9,6 +9,7 @@ const TextArea = (props) => {
         rows={props.rows}
         placeholder={props.placeholder}
         onChange={props.onChange}
+        value={props.value}
       />
     </Form.Group>
   );
