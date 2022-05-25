@@ -5,6 +5,8 @@ import TextInput from '../../common/TextInput/TextInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPost, editPost, selectPostById } from '../../../Redux/postsRedux';
 import { useNavigate } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const PostForm = (props) => {
   const dispatch = useDispatch();
@@ -28,7 +30,6 @@ const PostForm = (props) => {
   const singlePost = useSelector((state) =>
     selectPostById(state, props.postId)
   );
-  console.log(singlePost);
   useEffect(() => {
     if (props.variant === 'edit' && singlePost) {
       setTitle(singlePost.title);
@@ -44,6 +45,8 @@ const PostForm = (props) => {
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
   const [content, setContent] = useState('');
+
+  console.log(content);
 
   return (
     <Form onSubmit={(e) => handleSubmit(e)}>
@@ -76,24 +79,23 @@ const PostForm = (props) => {
       </TextInput>
       <TextArea
         as="textarea"
-        placeholder="Leave a comment here"
+        placeholder="Enter description"
         rows="3"
-        id="description"
+        id="content"
         onChange={(e) => setDescription(e.target.value)}
         value={description}
       >
         Short description
       </TextArea>
-      <TextArea
-        as="textarea"
-        placeholder="Enter content"
-        rows="20"
-        id="content"
-        onChange={(e) => setContent(e.target.value)}
-        value={content}
-      >
-        Short description
-      </TextArea>
+      <Form.Group>
+        <Form.Label value={content}>Main content</Form.Label>
+        <ReactQuill
+          theme="snow"
+          value={content}
+          onChange={() => setContent()}
+          placeholder="Enter content"
+        />
+      </Form.Group>
       <Button type="submit">AddPost</Button>
     </Form>
   );

@@ -40,7 +40,7 @@ const Post = () => {
           <Row>
             <Stack direction="horizontal" gap={3}>
               <h1>{post.title}</h1>
-              <div className='ms-auto'>
+              <div className="ms-auto">
                 <Link to={'/post/edit/' + post.id}>
                   <Button variant="outline-info">EditPost</Button>
                 </Link>
@@ -60,7 +60,9 @@ const Post = () => {
         <Card.Text>
           <b>Published: </b> {post.publishedDate}
         </Card.Text>
-        <Card.Text>{post.content}</Card.Text>
+        <Card.Text>
+          <p dangerouslySetInnerHTML={{ __html: post.content }} />
+        </Card.Text>
       </Card>
     </Row>
   );
