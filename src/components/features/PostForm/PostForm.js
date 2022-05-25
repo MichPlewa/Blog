@@ -7,6 +7,9 @@ import { addPost, editPost, selectPostById } from '../../../Redux/postsRedux';
 import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { dateToStr } from '../../utils/dateToStr';
 
 const PostForm = (props) => {
   const dispatch = useDispatch();
@@ -20,6 +23,7 @@ const PostForm = (props) => {
       publishedDate: date,
       author: author,
     };
+    console.log(dateToStr(post.publishedDate));
     if (props.variant === 'edit') {
       dispatch(editPost({ ...post, id: props.postId }));
     } else {
@@ -45,8 +49,7 @@ const PostForm = (props) => {
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
   const [content, setContent] = useState('');
-
-  console.log(content);
+  console.log(date);
 
   return (
     <Form onSubmit={(e) => handleSubmit(e)}>
@@ -68,15 +71,10 @@ const PostForm = (props) => {
       >
         Author
       </TextInput>
-      <TextInput
-        type="text"
-        placeholder="Enter Date"
-        id="date"
-        onChange={(e) => setDate(e.target.value)}
-        value={date}
-      >
-        Date
-      </TextInput>
+      <DatePicker
+        selected={date}
+        onChange={(date) => setDate(dateToStr(date))}
+      />
       <TextArea
         as="textarea"
         placeholder="Enter description"
@@ -92,7 +90,7 @@ const PostForm = (props) => {
         <ReactQuill
           theme="snow"
           value={content}
-          onChange={() => setContent()}
+          onChange={setContent}
           placeholder="Enter content"
         />
       </Form.Group>
