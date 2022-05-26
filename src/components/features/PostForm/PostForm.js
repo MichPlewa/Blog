@@ -28,9 +28,13 @@ const PostForm = (props) => {
       author: author,
     };
     if (content && date) {
-      dispatch(addPost(post));
-      navigate('/');
+      if (props.variant === 'edit') {
+        dispatch(editPost({ ...post, id: props.postId }));
+      } else {
+        dispatch(addPost(post));
+      }
     }
+    navigate('/');
   };
   const singlePost = useSelector((state) =>
     selectPostById(state, props.postId)
