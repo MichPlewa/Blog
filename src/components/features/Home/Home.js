@@ -3,6 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAllPost } from '../../../Redux/postsRedux';
+import { dateToStr } from '../../utils/dateToStr';
 
 const Home = () => {
   const posts = useSelector((state) => selectAllPost(state));
@@ -32,7 +33,7 @@ const Home = () => {
                 </Card.Text>
                 <Card.Text>
                   <b>Published: </b>
-                  {post.publishedDate}
+                  {dateToStr(post.publishedDate)}
                 </Card.Text>
                 <Card.Text>{post.shortDescription}</Card.Text>
                 <Link to={'/post/' + post.id}>

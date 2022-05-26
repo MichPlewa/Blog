@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectPostById, removePost } from '../../../Redux/postsRedux';
 import { Card, Row, Button, Modal, Stack } from 'react-bootstrap';
 import { useState } from 'react';
+import { dateToStr } from '../../utils/dateToStr';
 
 const Post = () => {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ const Post = () => {
           {post.author}
         </Card.Text>
         <Card.Text>
-          <b>Published: </b> {post.publishedDate}
+          <b>Published: </b> {dateToStr(post.publishedDate)}
         </Card.Text>
         <Card.Text>
           <p dangerouslySetInnerHTML={{ __html: post.content }} />

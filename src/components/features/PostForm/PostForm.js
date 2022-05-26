@@ -49,7 +49,6 @@ const PostForm = (props) => {
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
   const [content, setContent] = useState('');
-  console.log(date);
 
   return (
     <Form onSubmit={(e) => handleSubmit(e)}>
@@ -71,10 +70,7 @@ const PostForm = (props) => {
       >
         Author
       </TextInput>
-      <DatePicker
-        selected={date}
-        onChange={(date) => setDate(dateToStr(date))}
-      />
+      <DatePicker selected={date} onChange={(date) => setDate(date)} />
       <TextArea
         as="textarea"
         placeholder="Enter description"
