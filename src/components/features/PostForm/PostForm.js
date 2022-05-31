@@ -15,11 +15,23 @@ const PostForm = (props) => {
     handleSubmit: validate,
     formState: { errors },
   } = useForm();
+
+  const handleSubmitEnhanced = () => {
+    if (date && content) handleSubmit();
+  };
+
+  const validateEnhanced = (e) => {
+    setDateError(false);
+    setContentError(false);
+    
+    if (!date) setDateError(true);
+    if (!content) setContentError(true);
+    validate(handleSubmitEnhanced)(e);
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = () => {
-    setContentError(!content);
-    setDateError(!date);
     const post = {
       title: title,
       shortDescription: description,
@@ -56,8 +68,9 @@ const PostForm = (props) => {
   const [content, setContent] = useState('');
   const [contentError, setContentError] = useState(false);
   const [dateError, setDateError] = useState(false);
+
   return (
-    <Form onSubmit={validate(handleSubmit)}>
+    <Form onSubmit={validateEnhanced}>
       <Form.Group className="mb-3" style={{ width: '40%' }} controlId="title">
         <Form.Label>Title</Form.Label>
         <Form.Control
