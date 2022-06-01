@@ -1,17 +1,20 @@
-import { Col, Row, Stack } from 'react-bootstrap';
-import { Button, Card } from 'react-bootstrap';
+import { Row, Col, Stack, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectAllPost } from '../../../Redux/postsRedux';
 import { dateToStr } from '../../utils/dateToStr';
+import { useParams } from 'react-router-dom';
+import { selectPostByCategory } from '../../../Redux/postsRedux';
 
-const Home = () => {
-  const posts = useSelector((state) => selectAllPost(state));
+const CategoryesPage = () => {
+  const { category } = useParams();
+  const posts = useSelector((state) => selectPostByCategory(state, category));
+  posts.map((post) => console.log('map', post));
+
   return (
     <div>
       <Row>
         <Col>
-          <h2>All posts</h2>
+          <h2>{category}</h2>
         </Col>
         <Col>
           <Stack direction="horizontal" gap={1}>
@@ -36,7 +39,8 @@ const Home = () => {
                   {dateToStr(post.publishedDate)}
                 </Card.Text>
                 <Card.Text>
-                  <b>Category: </b> {post.category}
+                  <b>Category: </b>
+                  {post.category}
                 </Card.Text>
                 <Card.Text>{post.shortDescription}</Card.Text>
                 <Link to={'/post/' + post.id}>
@@ -51,4 +55,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CategoryesPage;

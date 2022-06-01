@@ -15,6 +15,7 @@ const Post = () => {
   const handleRemove = () => {
     dispatch(removePost(post.id));
   };
+  console.log(post);
   return (
     <Row style={{ margin: 'auto', width: '70%' }}>
       <Modal show={show} onHide={() => handleClose()}>
@@ -60,6 +61,9 @@ const Post = () => {
         </Card.Text>
         <Card.Text>
           <b>Published: </b> {dateToStr(post.publishedDate)}
+        </Card.Text>
+        <Card.Text>
+          <b>Category: </b> {post.category}
         </Card.Text>
         <Card.Text>
           <p dangerouslySetInnerHTML={{ __html: post.content }} />

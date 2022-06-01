@@ -1,8 +1,9 @@
 import { createStore, combineReducers } from 'redux';
 import initialState from './initialState';
 import postsRedux from './postsRedux';
+import categoryRedux from './categoryRedux';
 
-const subreducers = { posts: postsRedux };
+const subreducers = { posts: postsRedux, categoryes: categoryRedux };
 
 const reducer = combineReducers(subreducers);
 const store = createStore(

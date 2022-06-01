@@ -8,6 +8,8 @@ import About from './components/posts/About';
 import NotFound from './components/posts/NotFound';
 import Header from './components/view/Header';
 import Footer from './components/view/Footer';
+import Categoryes from './components/posts/Categoryes';
+import CategoryesPage from './components/features/Home/CategoryesPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           <Route path="/post/:id" element={<Post />} />
           <Route path="/post/add" element={<AddPost />} />
           <Route path="/post/edit/:id" element={<EditPost />} />
+          <Route path="/categoryes" element={<Categoryes />} />
+          <Route path="/categoryes/:category" element={<CategoryesPage />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

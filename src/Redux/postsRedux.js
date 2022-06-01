@@ -2,9 +2,9 @@ import shortid from 'shortid';
 //selectors
 export const selectAllPost = ({ posts }) => posts;
 export const selectPostById = ({ posts }, pageId) =>
-  posts.find((post) => {
-    return post.id === pageId;
-  });
+  posts.find((post) => post.id === pageId);
+export const selectPostByCategory = ({ posts }, category) =>
+  posts.filter((post) => post.category === category);
 // actions
 const createActionName = (actionName) => `app/posts/${actionName}`;
 const REMOVE_POST = createActionName('REMOVE_POST');

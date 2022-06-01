@@ -2,14 +2,20 @@ import { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPost, editPost, selectPostById } from '../../../Redux/postsRedux';
+import { selecetAllCategory } from '../../../Redux/categoryRedux';
 import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useForm } from 'react-hook-form';
+import Option from '../../view/Option';
 
 const PostForm = (props) => {
+  const categorys = useSelector((state) => {
+    return selecetAllCategory(state);
+  });
+  console.log(categorys);
   const {
     register,
     handleSubmit: validate,
@@ -23,7 +29,7 @@ const PostForm = (props) => {
   const validateEnhanced = (e) => {
     setDateError(false);
     setContentError(false);
-    
+
     if (!date) setDateError(true);
     if (!content) setContentError(true);
     validate(handleSubmitEnhanced)(e);
@@ -101,13 +107,22 @@ const PostForm = (props) => {
           </small>
         )}
       </Form.Group>
-      <Form.Group>
+      <Form.Group className="mb-3" controlId="date">
+        <Form.Label>Date</Form.Label>
         <DatePicker selected={date} onChange={(date) => setDate(date)} />
         {dateError && (
           <small className="d-block form-text text-danger mt-2">
             Date can't be empty
           </small>
         )}
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="category">
+        <Form.Label>Category</Form.Label>
+        <Form.Select aria-label="Default select example">
+          {categorys.map((category) => (
+            <Option key={category}>{category}</Option>
+          ))}
+        </Form.Select>
       </Form.Group>
       <Form.Group className="mb-3" controlId="description">
         <Form.Label>shortDescription</Form.Label>
